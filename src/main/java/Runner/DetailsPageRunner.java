@@ -12,6 +12,6 @@ plugin = {"pretty", "html:target/cucumberHtmlReport", "json:target/json-report/r
 
 @Test
 
-public class HotelsPageRunner extends AbstractTestNGCucumberTests{
+public class DetailsPageRunner extends AbstractTestNGCucumberTests{
 
 }

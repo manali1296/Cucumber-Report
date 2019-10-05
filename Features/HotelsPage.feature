@@ -1,9 +1,9 @@
 Feature: Verify hotels Functionality
 
-@ho1
+@ho1 @HotelsPage
 Scenario Outline: verify Ratings
 Given I Land on swiggy homepage
-When I enter Location value in Searchbox
+When I enter "<location>" value in Searchbox
 Then I verify list of search result is populated below
 Then i selected First option 
 Then I verify i landed on Page with "<location>" on top left corner i was entered for search
@@ -13,10 +13,10 @@ Examples:
 |location|
 |Pune|
 
-@ho2
+@ho2 @HotelsPage
 Scenario Outline: verify Exclusive band
 Given I Land on swiggy homepage
-When I enter Location value in Searchbox
+When I enter "<location>" value in Searchbox
 Then I verify list of search result is populated below
 Then i selected First option 
 Then I verify i landed on Page with "<location>" on top left corner i was entered for search
@@ -26,10 +26,10 @@ Examples:
 |location|
 |Pune|
 
-@ho3 @test
+@ho3 @test @HotelsPage
 Scenario Outline: Verify Promoted hotels
 Given I Land on swiggy homepage
-When I enter Location value in Searchbox
+When I enter "<location>" value in Searchbox
 Then I verify list of search result is populated below
 Then i selected First option 
 Then I verify i landed on Page with "<location>" on top left corner i was entered for search
@@ -38,10 +38,10 @@ Examples:
 |location|
 |Pune|
 
-@ho4 @test
+@ho4 @test @HotelsPage
 Scenario Outline: verify Search feature
 Given I Land on swiggy homepage
-When I enter Location value in Searchbox
+When I enter "<location>" value in Searchbox
 Then I verify list of search result is populated below
 Then i selected First option 
 When I click on "Search" option
@@ -53,10 +53,10 @@ Examples:
 |location|search_option|rating|
 |Pune|icecream|4.1|
 
-@ho6 
+@ho6 @HotelsPage
 Scenario Outline: verify hotels  badges color
 Given I Land on swiggy homepage
-When I enter Location value in Searchbox
+When I enter "<location>" value in Searchbox
 Then I verify list of search result is populated below
 Then i selected First option 
 Then I verify i landed on Page with "<location>" on top left corner i was entered for search
@@ -66,10 +66,10 @@ Examples:
 |location|
 |Pune|
 
-@ho7
+@ho7 @HotelsPage
 Scenario Outline: verify Quick view functionality
 Given I Land on swiggy homepage
-When I enter Location value in Searchbox
+When I enter "<location>" value in Searchbox
 Then I verify list of search result is populated below
 Then i selected First option 
 Then I verify i landed on Page with "<location>" on top left corner i was entered for search

@@ -1,6 +1,6 @@
 Feature: Swiggy Homepage feature
 
-@h1
+@h1 @test
 Scenario Outline: search Box
 Given I Land on swiggy homepage
 When I enter "<location>" value in Searchbox

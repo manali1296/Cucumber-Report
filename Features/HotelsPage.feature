@@ -1,6 +1,6 @@
 Feature: Verify hotels Functionality
 
-@ho1 @HotelsPage
+@ho1 @HotelsPage @test
 Scenario Outline: verify Ratings
 Given I Land on swiggy homepage
 When I enter "<location>" value in Searchbox
@@ -13,7 +13,7 @@ Examples:
 |location|
 |Pune|
 
-@ho2 @HotelsPage
+@ho2 @HotelsPage @test
 Scenario Outline: verify Exclusive band
 Given I Land on swiggy homepage
 When I enter "<location>" value in Searchbox
@@ -53,7 +53,7 @@ Examples:
 |location|search_option|rating|
 |Pune|icecream|4.1|
 
-@ho6 @HotelsPage
+@ho6 @HotelsPage @test
 Scenario Outline: verify hotels  badges color
 Given I Land on swiggy homepage
 When I enter "<location>" value in Searchbox
@@ -66,7 +66,7 @@ Examples:
 |location|
 |Pune|
 
-@ho7 @HotelsPage
+@ho7 @HotelsPage @test
 Scenario Outline: verify Quick view functionality
 Given I Land on swiggy homepage
 When I enter "<location>" value in Searchbox

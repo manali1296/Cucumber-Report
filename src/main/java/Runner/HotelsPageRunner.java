@@ -7,7 +7,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 
 @CucumberOptions(features = "Features",
 glue = { "stepDefination" }, 
-tags = { "@ho1" }, 
+tags = { "@test" }, 
 plugin = {"pretty", "html:target/cucumberHtmlReport", "json:target/json-report/report.json" })
 
 @Test

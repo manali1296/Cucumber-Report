@@ -48,8 +48,8 @@ Then I verify list of search result is populated below
 Then i selected First option 
 When I click on "Search" option
 And I entered "<search_option>"
-Then I found the search result contains item with search option
-Then I verify hotels which has more than "<rating>" 
+#Then I found the search result contains item with search option
+#Then I verify hotels which has more than "<rating>" 
 
 Examples:
 |location|search_option|rating|
@@ -69,7 +69,7 @@ Examples:
 |Pune|
 |Ahmednagar|
 
-@ho7 @HotelsPage @test
+@ho7 @HotelsPage 
 Scenario Outline: verify Quick view functionality
 Given I Land on swiggy homepage
 When I enter "<location>" value in Searchbox

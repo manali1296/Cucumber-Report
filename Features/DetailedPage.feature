@@ -67,6 +67,7 @@ Then I verify hotels rating colors
 Examples:
 |location|
 |Pune|
+|Ahmednagar|
 
 @ho7 @HotelsPage @test
 Scenario Outline: verify Quick view functionality

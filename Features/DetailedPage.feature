@@ -26,7 +26,7 @@ Then I verify Hotels which has "Exclusive" band on top left corner
 Examples:
 |location|
 |Pune|
-|Mumbaai|
+|Mumbai|
 
 @ho3 @test @HotelsPage
 Scenario Outline: Verify Promoted hotels
@@ -88,5 +88,6 @@ Examples:
 @h08 @test
 Scenario: scenario without examples
 Given I Land on swiggy homepage
-
+When I enter "Ahmednagar" value in Searchbox
+Then I verify list of search result is populated below
 

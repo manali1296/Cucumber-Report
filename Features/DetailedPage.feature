@@ -12,6 +12,7 @@ Then I verify Hotels which Has Rating more than "4.5"
 Examples:
 |location|
 |Pune|
+|Mumbai|
 
 @ho2 @HotelsPage @test
 Scenario Outline: verify Exclusive band
@@ -25,6 +26,7 @@ Then I verify Hotels which has "Exclusive" band on top left corner
 Examples:
 |location|
 |Pune|
+|Mumbaai|
 
 @ho3 @test @HotelsPage
 Scenario Outline: Verify Promoted hotels
@@ -82,5 +84,9 @@ Then I verify hotel has "149" , "199" Of Rupees menus
 Examples:
 |location|hotel|quick_View|
 |Pune|pizzahut|Quick View|
+
+@h08 @test
+Scenario: scenario without examples
+Given I Land on swiggy homepage
 
 

@@ -6,7 +6,7 @@ Given I Land on swiggy homepage
 When I enter "<location>" value in Searchbox
 Then I verify list of search result is populated below
 Then i selected First option 
-Then I verify i landed on Page with "<location>" on top left corner i was entered for search
+Then I verify i landed on Page with "abc" on top left corner i was entered for search
 Then I verify Hotels which Has Rating more than "4.5"
 
 Examples:

@@ -38,10 +38,10 @@ List <WebElement> hotelsRating;
 	@FindBy(xpath="//div[text()='Promoted']")
 	List <WebElement> promotedHotels;
 	
-	@FindBy(css=".IJsqo")
+	@FindBy(xpath="//div[text()='Promoted']")
 	List<WebElement> hotelWithBadges;
 	
-	@FindBy(xpath="//div[@class='_3Ynv-']//a[@href=\"/search\"]")
+	@FindBy(xpath="//input[@placeholder='Search for restaurants or dishes']")
 	WebElement searchBox;
 	
 	@FindBy(xpath="//input[@type='text']")

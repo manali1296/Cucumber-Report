@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <style>
     html,
@@ -23,6 +24,14 @@
         text-align: center;
     }
     
+    .chartContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    #scenariosChart {
+        margin-left: 200px;
+    }
     .headerRow {
         background-color: #66ccee;
         font-weight: bold;
@@ -52,6 +61,10 @@
 
 <body>
     <div class="container">
+        <div class="chartContainer">
+            <h3>Scenario</h3>
+            <div id="scenariosChart" style="width: 650px; height: 400px;"></div>
+        </div>
         <div>
             <table id="summaryTable" border="1">
                 <thead>
@@ -91,7 +104,6 @@
     var data = JSON.parse(reportData);
 
     function createTable() {
-        console.log(data);
         var tableBody = document.getElementById('summaryTable').getElementsByTagName('tbody')[0];
 
         for (var i = 0; i < data.features.length; i++) {
@@ -101,36 +113,56 @@
             cell1.innerHTML = featureData.FeatureFileName;
             var cell2 = row.insertCell();
             cell2.innerHTML = featureData.TotalScenarioPass;
-            cell2.classList.add("pass");
+            if(featureData.TotalScenarioPass > 0){
+                cell2.classList.add("pass");
+            }
             var cell3 = row.insertCell();
             cell3.innerHTML = featureData.TotalScenarioFail;
-            cell3.classList.add("fail");
+            if(featureData.TotalScenarioFail > 0){
+                cell3.classList.add("fail");
+            }
             var cell4 = row.insertCell();
             cell4.innerHTML = featureData.TotalScenarioCount;
-            cell4.classList.add("total");
+            if(featureData.TotalScenarioCount > 0){
+                cell4.classList.add("total");
+            }
             var cell5 = row.insertCell();
-            cell5.classList.add("pass");
             cell5.innerHTML = featureData.ExamplePass;
+            if(featureData.ExamplePass > 0){
+                cell5.classList.add("pass");
+            }
             var cell6 = row.insertCell();
             cell6.innerHTML = featureData.ExampleFail;
-            cell6.classList.add("fail");
+            if(featureData.ExampleFail > 0){
+                cell6.classList.add("fail");
+            }
             var cell7 = row.insertCell();
             cell7.innerHTML = featureData.TotalExCount;
-            cell7.classList.add("total");
+            if(featureData.TotalExCount > 0){
+                cell7.classList.add("total");
+            }
             var cell8 = row.insertCell();
             cell8.innerHTML = featureData.TotalStepsPass;
-            cell8.classList.add("pass");
+            if(featureData.TotalStepsPass > 0){
+                cell8.classList.add("pass");
+            }
             var cell9 = row.insertCell();
             cell9.innerHTML = featureData.TotalStepFail;
-            cell9.classList.add("fail");
+            if(featureData.TotalStepFail > 0){
+                cell9.classList.add("fail");
+            }
             var cell10 = row.insertCell();
             cell10.innerHTML = featureData.TotalStepSkipped;
-            cell10.classList.add("skipped");
+            if(featureData.TotalStepSkipped > 0){
+                cell10.classList.add("skipped");
+            }
             var cell11 = row.insertCell();
             cell11.innerHTML = featureData.TotalStepCount;
-            cell11.classList.add("total");
+            if(featureData.TotalStepCount > 0){
+                cell11.classList.add("total");
+            }
             var cell12 = row.insertCell();
-            cell12.innerHTML = featureData.duration + ' Hrs';
+            cell12.innerHTML = featureData.duration + ' Min';
             var cell13 = row.insertCell();
             cell13.innerHTML = featureData.Status;
             if (featureData.Status == "Passed") {
@@ -146,31 +178,31 @@
         cell1.innerHTML = 'Total';
         var cell2 = row.insertCell();
         cell2.innerHTML = data.TotalScenarioPassCount;
-        cell2.classList.add("pass");
+        cell2.classList.add("total");
         var cell3 = row.insertCell();
         cell3.innerHTML = data.TotalScenarioFailedCount;
-        cell3.classList.add("fail");
+        cell3.classList.add("total");
         var cell4 = row.insertCell();
         cell4.innerHTML = data.TotalPassFailScenarioCount;
         cell4.classList.add("total");
         var cell5 = row.insertCell();
-        cell5.classList.add("pass");
         cell5.innerHTML = data.TotalExPassCount;
+        cell5.classList.add("total");
         var cell6 = row.insertCell();
         cell6.innerHTML = data.TotalExFailCount;
-        cell6.classList.add("fail");
+        cell6.classList.add("total");
         var cell7 = row.insertCell();
         cell7.innerHTML = data.TotalExPassFailCount;
         cell7.classList.add("total");
         var cell8 = row.insertCell();
         cell8.innerHTML = data.TotalStepsPassCount;
-        cell8.classList.add("pass");
+        cell8.classList.add("total");
         var cell9 = row.insertCell();
         cell9.innerHTML = data.TotalStepsFailedCount;
-        cell9.classList.add("fail");
+        cell9.classList.add("total");
         var cell10 = row.insertCell();
         cell10.innerHTML = data.TotalStepsSkippedCount;
-        cell10.classList.add("skipped");
+        cell10.classList.add("total");
         var cell11 = row.insertCell();
         cell11.innerHTML = data.TotalStepsPassFailCount;
         cell11.classList.add("total");
@@ -183,31 +215,61 @@
         cell1.innerHTML = 'Percentage';
         var cell2 = row.insertCell();
         cell2.innerHTML = data.ScenarioPassPercentage + "%";
-        cell2.classList.add("pass");
+        cell2.classList.add("total");
         var cell3 = row.insertCell();
         cell3.innerHTML = data.ScenarioFailedPercentage + "%";
-        cell3.classList.add("fail");
+        cell3.classList.add("total");
         row.insertCell();
         var cell5 = row.insertCell();
         cell5.innerHTML = data.ExamplePassPercentage + "%";
-        cell5.classList.add("pass");
+        cell5.classList.add("total");
         var cell6 = row.insertCell();
         cell6.innerHTML = data.ExampleFailPercentage + "%";
-        cell6.classList.add("fail");
+        cell6.classList.add("total");
         row.insertCell();
         var cell8 = row.insertCell();
         cell8.innerHTML = data.StepsPassedPercentage + "%";
-        cell8.classList.add("pass");
+        cell8.classList.add("total");
         var cell9 = row.insertCell();
         cell9.innerHTML = data.StepsFailedPercentage + "%";
-        cell9.classList.add("fail");
+        cell9.classList.add("total");
         var cell10 = row.insertCell();
         cell10.innerHTML = data.StepsSkippedPercentage + "%";
-        cell10.classList.add("skipped");
+        cell10.classList.add("total");
         row.insertCell();
         row.insertCell();
         row.insertCell();
 
+        initScenarioChart(data.TotalScenarioPassCount, data.TotalStepsFailedCount)
+    }
+
+
+    function initScenarioChart(scenario_passed, scenario_failed) {
+        google.charts.load("current", {
+            packages: ["corechart"]
+        });
+        google.charts.setOnLoadCallback(drawChart);
+
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Scenario', 'Status'],
+                ['Passed', scenario_passed],
+                ['Failed', scenario_failed]
+            ]);
+
+            var options = {
+                pieHole: 0.4,
+                slices: {
+                    0: { color: '#32CD32' },
+                    1: { color: '#ff6347' }
+                },
+                sliceVisibilityThreshold:0
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('scenariosChart'));
+            chart.draw(data, options);
+        }
     }
 
     window.addEventListener('load', createTable);

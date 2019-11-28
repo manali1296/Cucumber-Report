@@ -27,7 +27,8 @@ for element in ObjectContent:
     totalExFail=0;
     totalScenarioPass=set();
     totalScenarioFail=set();
-    Totaltime=0
+    Totaltime=0;
+    TotalTime=0;
 
     for scenario_data in element['elements']:
         totalExStepPass=0;
@@ -37,13 +38,14 @@ for element in ObjectContent:
                 totalStepPass=totalStepPass+1;
                 totalExStepPass=totalExStepPass+1;
                 TotalTime=Totaltime+stepData["result"]["duration"]
-
             elif stepData['result']['status']=='failed':
                 totalStepFail=totalStepFail+1;
                 totalExStepsFail=totalExStepsFail+1;
+                TotalTime=Totaltime+stepData["result"]["duration"]
             elif stepData['result']['status']=='skipped':
                 totalStepSkipped=totalStepSkipped+1;
                 totalExStepsFail=totalExStepsFail+1;
+                # TotalTime=Totaltime+stepData["result"]["duration"]
 
         if totalExStepsFail>0:
             totalExFail=totalExFail+1;
@@ -84,45 +86,52 @@ for element in ObjectContent:
         'TotalScenarioPass':len(totalScenarioPass),
         'TotalScenarioFail':len(totalScenarioFail),
         'TotalScenarioCount':len(totalScenarioPass)+len(totalScenarioFail),
-        'duration':round(TotalTime/(60*60*1000*1000*1000),2),
+        'duration':round(TotalTime/(60*1000*1000*1000),2),
         'Status':status
     }
     outputFile['features'].append(featureFileName)
 if finalStepsPassed==0:
     stepPassPercentage=0;
 else:
-    stepPassPercentage=finalStepsPassed/(finalStepsPassed+finalStepsFail+finalStepsSkipped);
+    stepPassPercentage=(finalStepsPassed/(finalStepsPassed+finalStepsFail+finalStepsSkipped))*100;
     stepPassPercentage=round(stepPassPercentage,2);
+
 if finalStepsFail==0:
     stepFailedPercentage=0;
 else:
-    stepFailedPercentage=finalStepsFail/(finalStepsPassed+finalStepsFail+finalStepsSkipped);
+    stepFailedPercentage=(finalStepsFail/(finalStepsPassed+finalStepsFail+finalStepsSkipped))*100;
     stepFailedPercentage=round(stepFailedPercentage,2);
+
 if finalStepsSkipped==0:
     stepsSkippedPercentage=0;
 else:
-    stepsSkippedPercentage=finalStepsSkipped/(finalStepsPassed+finalStepsFail+finalStepsSkipped);
+    stepsSkippedPercentage=(finalStepsSkipped/(finalStepsPassed+finalStepsFail+finalStepsSkipped))*100;
     stepsSkippedPercentage=round(stepsSkippedPercentage,2);
+
 if finalExPass==0:
     examplePassPercentage=0;
 else:
-    examplePassPercentage=finalExPass/(finalExPass+finalExFail);
+    examplePassPercentage=(finalExPass/(finalExPass+finalExFail))*100;
     examplePassPercentage=round(examplePassPercentage,2);
+
 if finalExFail==0:
     exampleFailedPercentage=0;
 else:
-    exampleFailedPercentage=finalExFail/(finalExPass+finalExFail);
+    exampleFailedPercentage=(finalExFail/(finalExPass+finalExFail))*100;
     exampleFailedPercentage=round(exampleFailedPercentage,2);
+
 if finalScenarioPassed==0:
     scenarioPassedPercentage=0;
 else:
-    scenarioPassedPercentage=finalScenarioPassed/(finalScenarioPassed+finalScenarioPassed);
+    scenarioPassedPercentage=(finalScenarioPassed/(finalScenarioPassed+finalScenarioFailed))*100;
     scenarioPassedPercentage=round(scenarioPassedPercentage,2)
+
 if finalScenarioFailed==0:
     scenarioFailedPercentage=0;
 else:
-    scenarioFailedPercentage=finalScenarioFailed/(finalExPass+finalScenarioFailed);
+    scenarioFailedPercentage=(finalScenarioFailed/(finalScenarioPassed+finalScenarioFailed))*100;
     scenarioFailedPercentage=round(scenarioFailedPercentage,2)
+
 
 outputFile.update({
     "TotalStepsPassCount":finalStepsPassed,
@@ -145,12 +154,12 @@ outputFile.update({
 })
 
 
-file=open('../PythonCode/ReportTemplate.html','r')
+file=open('ReportTemplate.html','r')
 content=file.read()
 file.close()
 
 reportData=json.dumps(outputFile)
 content=content.replace('#reportData',reportData)
-file= open('../target/CustomisedReport/Output.html','w+')
+file= open('CustomisedReport.html','w+')
 file.write(content)
 file.close()
